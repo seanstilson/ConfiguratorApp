@@ -1,0 +1,13 @@
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\bin\Debug\netstandard2.0\ConfiguratorApp.deps.json
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\bin\Debug\netstandard2.0\ConfiguratorApp.dll
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\bin\Debug\netstandard2.0\ref\ConfiguratorApp.dll
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\bin\Debug\netstandard2.0\ConfiguratorApp.pdb
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ConfiguratorApp.AssemblyInfoInputs.cache
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ConfiguratorApp.AssemblyInfo.cs
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ConfiguratorApp.dll
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ref\ConfiguratorApp.dll
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ConfiguratorApp.pdb
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp\obj\Debug\netstandard2.0\ConfiguratorApp.csprojAssemblyReference.cache

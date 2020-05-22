@@ -1,0 +1,1 @@
+C:\Users\sstilson\source\repos\ConfiguratorApp\ConfiguratorApp\ConfiguratorApp.UWP\ConfiguratorApp.UWP.csproj;x64
