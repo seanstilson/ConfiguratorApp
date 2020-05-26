@@ -16,6 +16,8 @@ namespace ConfiguratorApp.ViewModels
         private IProductService _productService;
         private List<Product> _products;
         private Product _selectedProduct;
+        private Revision _selectedRevision;
+        public string SelectedType { get; set; }
 
         public Product SelectedProduct
         {
@@ -24,6 +26,29 @@ namespace ConfiguratorApp.ViewModels
                 if (_selectedProduct != null)
                     SetProductRevisionsVisible(_selectedProduct); 
                 OnPropertyChanged(nameof(SelectedProduct)); }
+        }
+        public Revision SelectedRevision
+        {
+            get { return _selectedRevision; }
+            set { _selectedRevision = value;
+                if (_selectedRevision != null){
+                    var prod = _productService.GetProductByRevision(SelectedProduct.ID, _selectedRevision.Number);
+                    if (prod != null)
+                        {
+                        Product[] pary = new Product[Products.Count];
+                        Products.CopyTo(pary);
+                        Products?.Clear();
+                       // var prods = _productService.GetAllProducts();
+                        Product p_rod = pary.SingleOrDefault(p => p.Name == prod.Name);
+                        p_rod.LaunchDate = prod.LaunchDate;
+                        p_rod.Revisions = prod.Revisions;
+                        p_rod.CurrentRevisionNumber = prod.CurrentRevisionNumber;
+                        Products = pary.ToList();
+                        SelectedProduct = p_rod;
+                        OnPropertyChanged(nameof(SelectedRevision));
+                        }
+                    }
+                }
         }
 
         public List<Product> Products {

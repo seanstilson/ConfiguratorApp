@@ -48,5 +48,14 @@ namespace ConfiguratorApp
            
            // BigList.ItemsSource = ViewModel.Products;
         }
+
+        private void ListView_ItemTapped_1(object sender, ItemTappedEventArgs e)
+        {
+            Device.InvokeOnMainThreadAsync(() =>
+           {
+               ViewModel.SelectedRevision = e.Item as Revision;
+           });
+            
+        }
     }
 }

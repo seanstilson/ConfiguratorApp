@@ -8,5 +8,7 @@ namespace ConfiguratorApp.Services
    public interface IProductService
     {
         List<Product> GetAllProducts();
+
+        Product GetProductByRevision(Guid ID, string revision);
     }
 }

@@ -6,6 +6,7 @@ namespace ConfiguratorApp.Models
 {
     public class Product
     {
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Number { get; set; }
@@ -18,5 +19,6 @@ namespace ConfiguratorApp.Models
         public string LaunchDateString => LaunchDate.ToString("MM/dd/yyyy h:mm tt");
         public List<Revision> Revisions { get; set; }
         public bool ChildrenVisible { get; set; }
+        public int CurrentRevisionNumber { get; set; }
     }
 }
