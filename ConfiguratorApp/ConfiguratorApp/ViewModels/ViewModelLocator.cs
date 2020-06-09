@@ -28,5 +28,13 @@ namespace ConfiguratorApp.ViewModels
             }
         }
 
+        public SpreadsheetViewViewModel SpreadSheetVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SpreadsheetViewViewModel>();
+            }
+        }
+
     }
 }

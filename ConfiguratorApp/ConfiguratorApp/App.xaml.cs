@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConfiguratorApp.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace ConfiguratorApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new SpreadsheetView();
         }
 
         protected override void OnStart()

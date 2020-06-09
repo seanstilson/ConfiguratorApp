@@ -20,11 +20,11 @@ namespace ConfiguratorApp
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<BasePageViewModel>().AsSelf();
             builder.RegisterType<MainPageViewModel>().AsSelf();
+            builder.RegisterType<SpreadsheetViewViewModel>().AsSelf();
             builder.RegisterType<ProductService>().As<IProductService>();
             Autofac.IContainer container = builder.Build();
             AutofacServiceLocator asl = new AutofacServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => asl);
-
         }
     }
 }

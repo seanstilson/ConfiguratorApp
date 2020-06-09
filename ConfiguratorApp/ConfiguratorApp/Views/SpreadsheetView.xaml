@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.XamarinForms.DataGrid"
+             BindingContext="{Binding SpreadSheetVM, Source={StaticResource Locator}}"
+             x:Class="ConfiguratorApp.Views.SpreadsheetView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#edeef0" HasShadow="True" CornerRadius="10" Margin="30,10,50,0" >
+            <Grid Margin="20,40,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+                    <Label FontSize="Large" Text="Search all products" Grid.Row="0" Grid.ColumnSpan="8" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Search" HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="1" VerticalOptions="End" />
+                    <Picker x:Name="Searcher" VerticalOptions="Start" 
+                         HorizontalOptions="StartAndExpand" Grid.Column="1" 
+                        WidthRequest="220" Grid.Row="1" ItemsSource="{Binding SearchParams}" SelectedItem="{Binding SelectedParam, Mode=TwoWay}">
+                    </Picker>
+                    <Label Text="Search Type" HorizontalOptions="EndAndExpand" Grid.Column="2" Grid.Row="1" VerticalOptions="End" />
+                    <Picker x:Name="Typo" VerticalOptions="Start" 
+                         HorizontalOptions="StartAndExpand" Grid.Column="3" 
+                        WidthRequest="220" Grid.Row="1" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding SelectedSearchTypeString, Mode=TwoWay}">
+                    </Picker>
+                    <Label Text="Value" HorizontalOptions="EndAndExpand" Grid.Column="4" VerticalOptions="End" Grid.Row="1"/>
+                    <Entry x:Name="EntryCrank" Placeholder="Enter value to search" Grid.Column="5" 
+                           HeightRequest="30" Margin="0,20,0,0" Grid.Row="1" Text="{Binding SearchValue}" TextChanged="EntryCrank_TextChanged" />
+                    <ImageButton Source="Assets/search.png" Grid.Column="6" Margin="5,10,15,0" Clicked="ImageButton_Clicked" Grid.Row="1" VerticalOptions="EndAndExpand"/>
+                    <CheckBox x:Name="Checkers" Grid.Column="7" VerticalOptions="EndAndExpand" Grid.Row="1" Margin="20,0,0,-10"/>
+                    <Label Text="Global replacement of edited value" FontSize="10" TextColor="Red" Grid.Column="8" Grid.Row="1" VerticalOptions="EndAndExpand"/>
+                </Grid>
+            </Frame>
+            <ScrollView x:Name="Scroller" IsClippedToBounds="True" 
+                        HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Scrolled="Scroller_Scrolled">
+            <telerikDataGrid:RadDataGrid x:Name="DataGrid" Margin="0, 50, 40, 0" 
+                                         SelectionChanged="DataGrid_SelectionChanged" PropertyChanged="DataGrid_PropertyChanged" 
+                                         BindingContextChanged="DataGrid_BindingContextChanged" SelectedItem="{Binding SelectedItem}" />
+
+            <!--<Grid x:Name="Spreader" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="220" />
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="220" />
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
+                </Grid>-->
+            </ScrollView>
+            <Button Text="Edit in Excel" Command="{Binding OpenExcelCommand}" WidthRequest="200" HeightRequest="60" 
+                    Margin="0,20,0,40" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
