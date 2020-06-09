@@ -36,5 +36,13 @@ namespace ConfiguratorApp.ViewModels
             }
         }
 
+        public ErrorPageViewModel ErrorVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ErrorPageViewModel>();
+            }
+        }
+
     }
 }

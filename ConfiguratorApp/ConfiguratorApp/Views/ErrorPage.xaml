@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BindingContext="{Binding ErrorVM, Source={StaticResource Locator}"
+             x:Class="ConfiguratorApp.Views.ErrorPage">
+    <ContentPage.Content>
+        <StackLayout >
+            <Label Text="Errors" HorizontalOptions="CenterAndExpand" FontSize="Header"/>
+            <Frame CornerRadius="20" BackgroundColor="Silver" Margin="100, 50, 100, 100">
+                <ListView x:Name="ErrorList" ItemsSource="{Binding Errors}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="450"/>
+                                    <ColumnDefinition Width="260"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="Assets/error.png"  Grid.Column="0" HorizontalOptions="StartAndExpand"></Image>
+                                <Label Text="{Binding Description}" Grid.Column="1" VerticalOptions="Center"/>
+                                <Label Text="{Binding Severity}" Grid.Column="2" VerticalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

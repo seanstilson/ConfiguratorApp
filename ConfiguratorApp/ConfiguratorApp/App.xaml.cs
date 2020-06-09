@@ -11,7 +11,7 @@ namespace ConfiguratorApp
         {
             InitializeComponent();
 
-            MainPage = new SpreadsheetView();
+            MainPage = new NavigationPage(new SpreadsheetView());
         }
 
         protected override void OnStart()

@@ -19,6 +19,8 @@ namespace ConfiguratorApp.ViewModels
 
         public List<ExcelProduct> CurrentProducts { get; set; }
 
+        public List<ExcelProduct> TempProducts { get; set; }
+
         public bool Searching { get; set; }
 
         private FileSystemWatcher Watcher { get; set; }
@@ -78,9 +80,19 @@ namespace ConfiguratorApp.ViewModels
 
         private void Watcher_Created(object sender, FileSystemEventArgs e)
         {
-            ReadExcelIntoObjects(FileName, string.Empty);
-            ReloadGrid();
-            MessagingCenter.Send<SpreadsheetViewViewModel>(this, "Reload");
+            //ReadExcelIntoObjects(FileName, string.Empty);
+            //ReloadGrid();
+            //MessagingCenter.Send<SpreadsheetViewViewModel>(this, "Reload");
+        }
+
+        private bool ValidateObjects()
+        {
+            if (TempProducts.Any(o => o.FeatureName.Contains("Billy")))
+                return false;
+            if (TempProducts.Any(o => o.FeatureName.Length > 72))
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -91,10 +103,19 @@ namespace ConfiguratorApp.ViewModels
         /// <param name="e"></param>
         private void Watcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            ReadExcelIntoObjects(FileName, string.Empty);
+            ReadExcelIntoTempObjects(FileName, string.Empty);
+            if (!ValidateObjects())
+            {
+                MessagingCenter.Send<SpreadsheetViewViewModel>(this, "Error");
+                return;
+            }
+            AllProducts = TempProducts;
+
             ReloadGrid();
             MessagingCenter.Send<SpreadsheetViewViewModel>(this, "Reload");
         }
+
+
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
@@ -198,6 +219,7 @@ namespace ConfiguratorApp.ViewModels
             
             PageSize = 2000;
             AllProducts = new List<ExcelProduct>();
+            TempProducts = new List<ExcelProduct>();
             SelectedParam = SearchParams[0];
             SelectedSearchTypeString = SearchTypes[0];
 
@@ -225,7 +247,7 @@ namespace ConfiguratorApp.ViewModels
             {
                 var firstSheet = package.Workbook.Worksheets["Configured Options"];
                 int row = 1, j = 1;
-                for (row = 1; row < firstSheet.Dimension.Rows; row++)
+                for (row = 2; row < firstSheet.Dimension.Rows; row++)
                 {
                     ExcelProduct ep = new ExcelProduct();
                     ep.ProductName = firstSheet.Cells[row, 1].Text;
@@ -245,6 +267,41 @@ namespace ConfiguratorApp.ViewModels
                     ep.OptionCSROnly = firstSheet.Cells[row, 15].Text;
                     ep.WorkTicketInput = firstSheet.Cells[row, 16].Text;
                     AllProducts.Add(ep);                  
+                }
+
+            }
+        }
+
+        public void ReadExcelIntoTempObjects(string fileName, string productNum)
+        {
+            TempProducts.Clear();
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(new FileInfo(fileName)))
+            {
+                var firstSheet = package.Workbook.Worksheets["Configured Options"];
+                int row = 1, j = 1;
+                for (row = 2; row < firstSheet.Dimension.Rows; row++)
+                {
+                    ExcelProduct ep = new ExcelProduct();
+                    ep.ProductName = firstSheet.Cells[row, 1].Text;
+                    ep.ProductNumber = firstSheet.Cells[row, 2].Text;
+                    ep.FeatureName = firstSheet.Cells[row, 3].Text;
+                    ep.FeatureRequired = firstSheet.Cells[row, 4].Text;
+                    ep.FeatureCSROnly = firstSheet.Cells[row, 5].Text;
+                    ep.OptionGroupName = firstSheet.Cells[row, 6].Text;
+                    ep.OptionGroupRequired = firstSheet.Cells[row, 7].Text;
+                    ep.OptionGroupCSRonly = firstSheet.Cells[row, 8].Text;
+                    ep.SubOptionGroupName = firstSheet.Cells[row, 9].Text;
+                    ep.SubOptionGroupRequired = firstSheet.Cells[row, 10].Text;
+                    ep.OptionName = firstSheet.Cells[row, 11].Text;
+                    ep.OptionCode = firstSheet.Cells[row, 12].Text;
+                    ep.HCPCS = firstSheet.Cells[row, 13].Text;
+                    ep.OptionRequired = firstSheet.Cells[row, 14].Text;
+                    ep.OptionCSROnly = firstSheet.Cells[row, 15].Text;
+                    ep.WorkTicketInput = firstSheet.Cells[row, 16].Text;
+                    TempProducts.Add(ep);
                 }
 
             }

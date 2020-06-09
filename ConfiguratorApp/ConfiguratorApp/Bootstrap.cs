@@ -22,6 +22,7 @@ namespace ConfiguratorApp
             builder.RegisterType<MainPageViewModel>().AsSelf();
             builder.RegisterType<SpreadsheetViewViewModel>().AsSelf();
             builder.RegisterType<ProductService>().As<IProductService>();
+            builder.RegisterType<ErrorPageViewModel>().AsSelf();
             Autofac.IContainer container = builder.Build();
             AutofacServiceLocator asl = new AutofacServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => asl);

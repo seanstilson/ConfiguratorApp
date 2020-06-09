@@ -72,8 +72,10 @@
                     </Grid.ColumnDefinitions>
                 </Grid>-->
             </ScrollView>
-            <Button Text="Edit in Excel" Command="{Binding OpenExcelCommand}" WidthRequest="200" HeightRequest="60" 
-                    Margin="0,20,0,40" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+            <Frame BackgroundColor="#e8eaed" CornerRadius="20" WidthRequest="200" Margin="80,5,80,5">
+            <ImageButton  Command="{Binding OpenExcelCommand}" WidthRequest="65" HeightRequest="60" 
+                    Margin="0,5,0,5" VerticalOptions="EndAndExpand" HorizontalOptions="Center" Source="Assets/excel.png" BackgroundColor="Transparent"/>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

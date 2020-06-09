@@ -35,12 +35,22 @@ namespace ConfiguratorApp.Views
 
             MessagingCenter.Subscribe<SpreadsheetViewViewModel>(this, "Reload", async (arg) =>
             {
-                await Device.InvokeOnMainThreadAsync(async () =>
+                await Device.InvokeOnMainThreadAsync(() =>
                  {
                      
                      DataGrid.ItemsSource = ViewModel.CurrentProducts;
-                     await Scroller.ScrollToAsync(0, 0, true);
+                     //await Scroller.ScrollToAsync(0, 0, true);
                  });
+            });
+
+            MessagingCenter.Subscribe<SpreadsheetViewViewModel>(this, "Error", async (arg) =>
+            {
+                await Device.InvokeOnMainThreadAsync(() =>
+                {
+
+                    Navigation.PushAsync(new ErrorPage());
+                    //await Scroller.ScrollToAsync(0, 0, true);
+                });
             });
 
             try
